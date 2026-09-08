@@ -1,4 +1,3 @@
-```bash
 #!/bin/bash
 # ============================================
 # Jerney Blog Platform - RHEL 9 EC2 Setup Script
@@ -11,25 +10,25 @@ echo "==========================================="
 
 # --- Update system ---
 echo "📦 Updating system packages..."
-sudo dnf update -y
+sudo yum update -y
 
 # --- Install required packages ---
 echo "📦 Installing required packages..."
-sudo dnf install -y curl wget
+sudo yum install -y curl wget
 
 # --- Install Node.js 20.x ---
 echo "📦 Installing Node.js 20.x..."
 
 curl -fsSL https://rpm.nodesource.com/setup_20.x | sudo bash -
 
-sudo dnf install -y nodejs
+sudo yum install -y nodejs
 
 echo "Node.js version: $(node -v)"
 echo "npm version: $(npm -v)"
 
 # --- Install PostgreSQL ---
 echo "📦 Installing PostgreSQL..."
-sudo dnf install -y postgresql-server postgresql
+sudo yum install -y postgresql-server postgresql
 
 # --- Initialize PostgreSQL ---
 echo "🗄️  Initializing PostgreSQL..."
@@ -42,7 +41,7 @@ sudo systemctl enable --now postgresql
 
 # --- Install Nginx ---
 echo "📦 Installing Nginx..."
-sudo dnf install -y nginx
+sudo yum install -y nginx
 
 sudo systemctl enable --now nginx
 
@@ -85,7 +84,7 @@ echo "📁 Setting up project..."
 sudo mkdir -p /var/www/jerney
 sudo chown -R $USER:$USER /var/www/jerney
 
-# Copy project files
+# --- Copy project files ---
 echo "📁 Copying project files..."
 
 cp -r ~/Jerney/* /var/www/jerney/
@@ -148,5 +147,3 @@ echo "  sudo systemctl restart nginx"
 echo "  sudo systemctl status postgresql"
 echo "  sudo systemctl status nginx"
 echo ""
-```
-
